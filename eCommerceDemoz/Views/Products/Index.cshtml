@@ -1,0 +1,68 @@
+﻿@model ActionService.ViewModel.ProductResponse
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn" })
+</p>
+<div>
+    @if (Model.ShoppingCart.Items.Count > 0)
+    {
+        @Html.Partial("~/Views/Partials/_CartItem.cshtml", Model.ShoppingCart)
+        <div>Yes Cart available</div>
+    }
+    else
+    {
+        <div>No Cart available</div>
+    }
+</div>
+<table  class="table condensed-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.SingleOrDefault().ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.SingleOrDefault().Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.SingleOrDefault().UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.SingleOrDefault().UnitsInStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Products.SingleOrDefault().CategoryId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Products) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsInStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>

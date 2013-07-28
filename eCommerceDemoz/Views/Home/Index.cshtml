@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<input type="text" data-bind="value: ProductName" />
+<input class="btn btn-primary" type="button" data-bind="click: save" value="Save" />
+
+
+<script src="~/Scripts/knockout-2.3.0.js"></script>
+<script type="text/javascript">
+    var ProductViewModel = function () {
+        var self = this;
+        self.ProductName = ko.observable("Same");
+
+        self.save = function () {
+            alert("Could now transmit to server: " + ko.utils.stringifyJson(self.ProductName));
+        };
+
+        self.ProductName.extend({ required: { message: "Please enter Name", params: true } });
+    };
+    $(function () {
+        ko.applyBindings(new ProductViewModel);
+    });
+
+</script>

@@ -1,0 +1,13 @@
+﻿@model Cart.ShoppingCart
+
+<table>
+    <tr>
+        <td>You have purchased @Model.Items.Count.ToString()</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("View", "CartDetail", new { /* id=item.PrimaryKey */ }) 
+        </td>
+    </tr>
+
+</table>

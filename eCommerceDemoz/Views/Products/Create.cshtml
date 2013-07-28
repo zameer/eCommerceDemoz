@@ -1,0 +1,75 @@
+﻿@model ActionService.ViewModel.ProductResponse
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product.ProductName)
+            @Html.ValidationMessageFor(model => model.Product.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.Weight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product.Weight)
+            @Html.ValidationMessageFor(model => model.Product.Weight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.UnitPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product.UnitPrice)
+            @Html.ValidationMessageFor(model => model.Product.UnitPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Product.UnitsInStock)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Product.UnitsInStock)
+            @Html.ValidationMessageFor(model => model.Product.UnitsInStock)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SelectedCategoryIds)
+        </div>
+        <div class="editor-field">
+
+            @Html.DropDownListFor(m => m.SelectedCategoryId, Model.CategoryItems)
+            @Html.ListBoxFor(m => m.SelectedCategoryIds, Model.CategoryItems)
+
+            @Html.RadioButtonFor(model => model.SelectedCategoryId, "false", new { id = "male", text = "make" }) 
+
+            @Html.EditorFor(model => model.Product.CategoryId)
+            @Html.ValidationMessageFor(model => model.Product.CategoryId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
